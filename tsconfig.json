@@ -1,0 +1,54 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "module": "commonjs",
+    "removeComments": false,
+    "preserveConstEnums": true,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "noImplicitAny": false,
+    "allowSyntheticDefaultImports": true,
+    "outDir": "lib",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strictNullChecks": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "rootDir": ".",
+    "jsx": "react-jsx",
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "typeRoots": [
+      "node_modules/@types",
+      "global.d.ts"
+    ],
+		"paths": {
+      "@/pages/*":["./src/pages/*"],
+      "@/store/*":["./src/store/*"],
+      "@/assets/*":["./src/assets/*"],
+      "@/utils/*":["./src/utils/*"],
+      "@/styles/*":["./src/styles/*"],
+      "@/components/*":["./src/components/*"],
+      "@/weappComponents/*":["./src/weappComponents/*"],
+      "@/api/*": ["./src/api/*"],
+      "@/constants/*": ["./src/constants/*"],
+      "@/actions/*": ["./src/actions/*"],
+      "@/reducers/*": ["./src/reducers/*"],
+      "@/interface/*": ["./src/interface/*"],
+      "@/guildPackages/*": ["./src/guildPackages/*"],
+      "@/setPackages/*": ["./src/setPackages/*"],
+      "@/infoPackages/*": ["./src/infoPackages/*"],
+      "@/commonInterface/*": ["./src/commonInterface/*"],
+      "@/commonPackages/*": ["./src/commonPackages/*"],
+      "@/h5Packages/*": ["./src/h5Packages/*"],
+      "@/activityPackages/*": ["./src/activityPackages/*"],
+      "@/IMSDK/*": ["./src/IMSDK/*"],
+      "@/certificationPackages/*": ["./src/certificationPackages/*"],
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
+  "compileOnSave": false
+}

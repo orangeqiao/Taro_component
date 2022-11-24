@@ -1,0 +1,21 @@
+.zzArrowPage{
+	.section{
+		text-align: center;
+		border-bottom: 1px solid #000;
+		padding-bottom: 50px;
+		.btn{
+			width: 200px;
+			display: block;
+		}
+		.section_title{
+			padding-bottom: 20px;
+		}
+		&:last-child{
+			border: none;
+		}
+		.section_container{
+			display: flex;
+			justify-content: center;
+		}
+	}
+}
