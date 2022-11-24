@@ -14,9 +14,22 @@ export default class Index extends Component {
   componentDidShow () { }
 
   componentDidHide () { }
-	handleJump=()=>{
+	handleJump=(event)=>{
+		console.log(event.target.dataset.type)
+		let type=event.target.dataset.type
+		let url=''
+		switch (type){
+			case 'arrow':
+				url='/comPackages/zzArrrowPage/index'
+				break
+				case 'input':
+				url='/comPackages/zzInputPage/index'
+				break
+
+
+		}
 		Taro.navigateTo({
-			url: '/comPackages/showComPage/index',
+			url,
 		
 		})
 	}
@@ -24,7 +37,8 @@ export default class Index extends Component {
   render () {
     return (
       <View className='index'>
-       <Button onClick={this.handleJump}>组件</Button>
+       <Button data-type='arrow' onClick={this.handleJump}>arrow组件</Button>
+			 <Button data-type='input' onClick={this.handleJump}>input组件</Button>
 			
       </View>
     )

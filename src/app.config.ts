@@ -13,6 +13,7 @@ export default {
     name: 'comPackages', 
     pages: [
 			'zzArrowPage/index',//展示zzArrow组件
+			'zzInputPage/index',//展示zzArrow组件
     ]
   }
 
