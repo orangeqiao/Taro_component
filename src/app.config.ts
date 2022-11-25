@@ -15,6 +15,7 @@ export default {
 			'zzArrowPage/index',//展示zzArrow组件
 			'zzInputPage/index',//展示zzArrow组件
 			'zzPopupPage/index',//展示zzArrow组件
+			'zzDialogPage/index',//展示zzArrow组件
     ]
   }
 

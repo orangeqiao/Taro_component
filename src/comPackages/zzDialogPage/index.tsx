@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View,  } from '@tarojs/components'
 import './index.scss'
 import Taro from '@tarojs/taro'
-import ZzPopup from '@/components/ZzPopup/ZzPopup'
+import ZzDialog from '@/components/ZzDialog/ZzDialog'
 
 interface IPageOwnProps {
 }
@@ -34,7 +34,13 @@ export default class Index extends Component<IPageOwnProps, IPageState>  {
 		let {  } = this.state
 		return (
 			<View className='zz_popup_page'>
-				<ZzPopup show={true} childHtml={'ddd'}/>
+				<ZzDialog
+				 show={true}
+				 containerHtml={'ddd'}
+				 title={'标题'}
+				 footerHtml={'我是底部'}
+				
+				/>
 			</View>
 		)
 	}

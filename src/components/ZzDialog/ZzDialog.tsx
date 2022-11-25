@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import React from 'react';
 import Taro from '@tarojs/taro';
 import { useState, useEffect, useMemo, useCallback } from 'react';
-import './ZzPopup.scss';
+import './ZzDialog.scss';
 import { mergeStyle } from '@/utils/tool';
 import ZzOverlay from '../ZzOverlay/ZzOverlay';
 
@@ -13,24 +13,28 @@ interface IPageOwnProps {
 	customStyle?: object | string,
 	show: boolean,   //显示
 	overlay?: boolean, //遮罩层
-	childHtml?: any, //插槽
-	arrow?: 'right' | 'left' | 'top' | 'bottom',
+	containerHtml?: any, //内容插槽
+	headerHtml?: any, //内容插槽
+	footerHtml?: any, //内容插槽
+	showClose?: boolean,//关闭按钮
 	zIndex?: number, //层级
 	duration?: number,//ms
-	round?: boolean, //圆角
 	onDidpath?: () => void,
+	title?: string,
 	onClose?: (type?: string) => void
 }
 function ZzPopup({
 	customStyle,
 	customClass,
 	show = false,
-	childHtml,
+	containerHtml,
+	headerHtml,
+	footerHtml,
 	zIndex = 1,
-	arrow = 'left',
 	duration = 300,
 	overlay = true,
-	round=true,
+	title,
+	showClose=true,
 	onDidpath,
 	onClose
 }: IPageOwnProps) {
@@ -74,11 +78,8 @@ function ZzPopup({
 	)
 	const handleClose = useCallback(() => {
 		console.log('关闭');
-		
-		onClose && onClose('overlay')
+		onClose && onClose()
 	}, [onClose, show])
-
-
 	return (
 		<React.Fragment>
 			{inited ?
@@ -87,19 +88,33 @@ function ZzPopup({
 						overlay && <ZzOverlay show={show} onDidpath={handleClose} />
 					}
 					<View className={classNames(
-						'zz_popup',
+						'zz_dialog',
 						{
-							[`zz_popup_${arrow}_default`]: true,
-							[`zz_popup_${arrow}`]: true,
-							'zz_left_right_active': ['right', 'left'].includes(arrow) && isReady && show,
-							'zz_top_bottom_active': ['top', 'bottom'].includes(arrow) && isReady && show,
-							'zz_popup_round': round,
+							'zz_dialog_active': isReady && show
 						},
 						customClass && customClass['class-name']
 					)}
 						style={mergeStyle(customStyle, isTransitionEnd ? { ...style, 'display': 'none' } : style)}
 						onTransitionEnd={overlayTransitionEnd}>
-						{childHtml}
+						{
+							showClose && <View className='zz_dialog_close' onClick={handleClose} >X</View>
+						}
+
+						<View className='zz_dialog_header'>
+							{
+								headerHtml ? headerHtml : title 
+							}
+						</View>
+						<View className='zz_dialog_container'>
+							{
+								containerHtml ? containerHtml : null
+							}
+						</View>
+						<View className='zz_dialog_footer'>
+							{
+								footerHtml ? footerHtml : null
+							}
+						</View>
 					</View>
 				</React.Fragment>
 
