@@ -102,7 +102,7 @@ function ZzPopup({
 
 						<View className='zz_dialog_header'>
 							{
-								headerHtml ? headerHtml : title 
+								headerHtml ? headerHtml : <View className='zz_dialog_header_title'> {title} </View>
 							}
 						</View>
 						<View className='zz_dialog_container'>
