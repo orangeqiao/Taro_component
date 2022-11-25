@@ -32,6 +32,7 @@ export default class Index extends Component {
 			 <Button data-type='Input' onClick={this.handleJump}>Input组件</Button>
 			 <Button data-type='Popup' onClick={this.handleJump}>Popup组件</Button>
 			 <Button data-type='Dialog' onClick={this.handleJump}>Dialog组件</Button>
+			 <Button data-type='LRNotice' onClick={this.handleJump}>LRNotice组件</Button>
       </View>
     )
   }

@@ -35,6 +35,7 @@ function ZzInput({
 		setTimeout(() => {
 			setInputValue(tempInputValue.current)
 		}, 0)
+		onInput && onInput(event, tempInputValue.current)
 	}, [onInput, maxlength])
 	return (<Input
 		className={classNames(

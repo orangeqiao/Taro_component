@@ -1,0 +1,18 @@
+.zz_lr_notice {
+	height: 60px;
+	width: 100%;
+	padding: 10px 10px 10px 0;
+	box-sizing: border-box;
+	background-color: bisque;
+	display: flex;
+	align-items: center;
+	font-size: 28px;
+	line-height: 28px;
+	position: relative;
+
+	.sccroll_wrap {
+		white-space: nowrap;
+		position: absolute;
+
+	}
+}

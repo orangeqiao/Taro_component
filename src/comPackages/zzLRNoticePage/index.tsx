@@ -1,21 +1,23 @@
 import React, { Component } from 'react'
-import { View,Button } from '@tarojs/components'
+import { View,  } from '@tarojs/components'
 import './index.scss'
 import Taro from '@tarojs/taro'
-import ZzPopup from '@/components/ZzPopup/ZzPopup'
+import ZzLRNotice from '@/components/ZzLRNotice/ZzLRNotice'
 
 interface IPageOwnProps {
 }
 interface IPageState {
-	show: boolean
+
 }
 export default class Index extends Component<IPageOwnProps, IPageState>  {
 	constructor(props: IPageOwnProps) {
 		super(props)
 		this.state = {
-			show: false
+
+
 		}
 	}
+
 	componentWillMount() { }
 
 	componentDidMount() { }
@@ -25,20 +27,16 @@ export default class Index extends Component<IPageOwnProps, IPageState>  {
 	componentDidShow() { }
 
 	componentDidHide() { }
-	changePopup=()=>{
-		this.setState({
-			show:!this.state.show
-		})
-	}
 
-
+	
 
 	render() {
-		let {show } = this.state
+		let {  } = this.state
 		return (
-			<View className='zz_popup_page'>
-				<Button onClick={this.changePopup}>打开popup</Button>
-				<ZzPopup show={show} childHtml={'ddd'} onClose={this.changePopup}/>
+			<View className='zz_lr_notice_page'>
+				<ZzLRNotice message='容祖儿什么时候开演唱会'/>
+		
+			
 			</View>
 		)
 	}
