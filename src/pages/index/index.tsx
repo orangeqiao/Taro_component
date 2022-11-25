@@ -15,19 +15,10 @@ export default class Index extends Component {
 
   componentDidHide () { }
 	handleJump=(event)=>{
-		console.log(event.target.dataset.type)
-		let type=event.target.dataset.type
-		let url=''
-		switch (type){
-			case 'arrow':
-				url='/comPackages/zzArrrowPage/index'
-				break
-				case 'input':
-				url='/comPackages/zzInputPage/index'
-				break
-
-
-		}
+		console.log(event)
+		const isWeapp = process.env.TARO_ENV === 'weapp'
+		let type=isWeapp? event.target.dataset.type: event.target['data-type']
+		let url=`/comPackages/zz${type}Page/index`
 		Taro.navigateTo({
 			url,
 		
@@ -37,9 +28,10 @@ export default class Index extends Component {
   render () {
     return (
       <View className='index'>
-       <Button data-type='arrow' onClick={this.handleJump}>arrow组件</Button>
-			 <Button data-type='input' onClick={this.handleJump}>input组件</Button>
-			
+       <Button data-type='Arrow' onClick={this.handleJump}>Arrow组件</Button>
+			 <Button data-type='Input' onClick={this.handleJump}>Input组件</Button>
+			 <Button data-type='Popup' onClick={this.handleJump}>Popup组件</Button>
+			 <Button data-type='Dialog' onClick={this.handleJump}>Dialog组件</Button>
       </View>
     )
   }
