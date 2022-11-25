@@ -3,29 +3,37 @@ import classNames from 'classnames';
 import React from 'react';
 import Taro from '@tarojs/taro';
 import { useState, useEffect, useMemo, useCallback } from 'react';
-import './ZzOverlay.scss';
+import './ZzPopup.scss';
 import { mergeStyle } from '@/utils/tool';
+import ZzOverlay from '../ZzOverlay/ZzOverlay';
 
 interface IPageOwnProps {
 	'class-name'?: string,
 	customClass?: Partial<Pick<IPageOwnProps, 'class-name'>>
 	customStyle?: object | string,
 	show: boolean,   //显示
+	overlay?: boolean, //遮罩层
 	childHtml?: any, //插槽
+	arrow?: 'right' | 'left' | 'top' | 'bottom',
 	zIndex?: number, //层级
 	duration?: number,//ms
-	onDidpath?: () => void
+	round?: boolean, //圆角
+	onDidpath?: () => void,
+	onClose?: (type?: string) => void
 }
-function ZzOverlay({
+function ZzPopup({
 	customStyle,
 	customClass,
 	show = false,
 	childHtml,
 	zIndex = 1,
+	arrow = 'left',
 	duration = 300,
-	onDidpath
+	overlay = true,
+	round=true,
+	onDidpath,
+	onClose
 }: IPageOwnProps) {
-	const isWeapp = process.env.TARO_ENV === 'weapp'
 	//节点挂载完成准备执行动画
 	const [isReady, setIsReady] = useState(false as boolean)
 	// 卸载动画结束
@@ -38,7 +46,7 @@ function ZzOverlay({
 			setInited(true)
 			Taro.nextTick(() => {
 				setTimeout(() => {
-					setIsReady(true) 
+					setIsReady(true)
 				}, 0)
 			})
 		} else {
@@ -54,8 +62,6 @@ function ZzOverlay({
 		if (isReady) {
 			str = show ? { ...str, 'opacity': 1 } : { ...str, 'opacity': 0 }
 		}
-		console.log(str,'str',isReady);
-		
 		return str
 	}, [show, isReady, duration, zIndex])
 	const overlayTransitionEnd = useCallback(
@@ -66,38 +72,39 @@ function ZzOverlay({
 		},
 		[show],
 	)
-	const touchmove = useCallback((e) => {
-		if (isWeapp) {
-			e.preventDefault() 
-			e.stopPropagation()
-		}
-	}, [])
-	const touchStart = useCallback((e) => {
-		if (isWeapp) {
-			e.preventDefault()
-			e.stopPropagation()
-		}
-	}, [])
-	const handleClick=useCallback(()=>{
-		onDidpath&&onDidpath()
-	},[onDidpath])
+	const handleClose = useCallback(() => {
+		onClose && onClose('overlay')
+	}, [onClose, show])
+
+
 	return (
 		<React.Fragment>
-			{inited ? <View className={classNames(
-				'zz_overlay',
-				customClass && customClass['class-name']
-			)}
-				style={mergeStyle(customStyle, isTransitionEnd ? { ...style, 'display': 'none' } : style)}
-				onTransitionEnd={overlayTransitionEnd}
-				onClick={handleClick}
-				onTouchMove={touchmove}
-				onTouchStart={touchStart}
-				catchMove>
-					 {childHtml}
-			</View>
+			{inited ?
+				<React.Fragment>
+					{
+						overlay && <ZzOverlay show={show} onDidpath={handleClose} />
+					}
+					<View className={classNames(
+						'zz_popup',
+						{
+							[`zz_popup_${arrow}_default`]: true,
+							[`zz_popup_${arrow}`]: true,
+							'zz_left_right_active': ['right', 'left'].includes(arrow) && isReady && show,
+							'zz_top_bottom_active': ['top', 'bottom'].includes(arrow) && isReady && show,
+							'zz_popup_round': round,
+						},
+						customClass && customClass['class-name']
+					)}
+						style={mergeStyle(customStyle, isTransitionEnd ? { ...style, 'display': 'none' } : style)}
+						onTransitionEnd={overlayTransitionEnd}>
+						{childHtml}
+						dsd
+					</View>
+				</React.Fragment>
+
 				: null}
 		</React.Fragment>
 	)
 
 }
-export default React.memo(ZzOverlay)
+export default React.memo(ZzPopup)
