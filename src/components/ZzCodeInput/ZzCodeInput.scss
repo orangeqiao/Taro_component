@@ -1,0 +1,35 @@
+.zz_code_Input {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	.code_list_container{
+		width: fit-content;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		.list_item{
+			flex-shrink: 0;
+			width: 60px;
+			height: 60px;
+			border-radius: 8px;
+			border: 1px solid #ececec;
+			background-color: red;
+			margin-right: 20px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			&:last-child{
+				margin-right: 0;
+			}
+
+		}
+	}
+	.zz_input{
+		// opacity: 0;
+		height: 60px;
+		position: absolute;
+		border-radius: 8px;
+		border: 1px solid #ececec;
+	}
+
+}
