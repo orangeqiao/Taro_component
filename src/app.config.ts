@@ -18,6 +18,7 @@ export default {
 			'zzDialogPage/index',//展示zzArrow组件
 			'zzLRNoticePage/index',//展示zzArrow组件
 			'zzCodeInputPage/index',//展示zzArrow组件
+			'zzTableInputPage/index',
     ]
   }
 

@@ -1,0 +1,43 @@
+.zz_table {
+	width: 100%;
+	overflow: auto;
+	font-size: 28px;
+	&_row {
+		border-bottom: 1px solid #ececec;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	&_column {
+		flex: 1;
+		border-right: 1px solid #ececec;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+	}
+
+	&_hd {
+		font-weight: bold;
+		border-top: 1px solid #ececec;
+	}
+}
+.operater_column{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	&_item{
+		margin-right: 20px;
+		color: red;
+		&:last-child{
+			margin-right: 0;
+			color: green;
+		}
+	}
+}
+
+.zz_input {
+	width: 200px;
+	// border: 1px solid #ececec;
+}

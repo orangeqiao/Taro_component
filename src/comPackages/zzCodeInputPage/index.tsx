@@ -29,6 +29,7 @@ export default class Index extends Component<IPageOwnProps, IPageState>  {
 	componentDidHide() { }
 	handleInput=(event,value)=>{
 		console.log(value)
+	
 
 	}
 
