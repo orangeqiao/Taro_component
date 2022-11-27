@@ -38,7 +38,7 @@ function ZzTableInput({
 		_table.current = table
 
 
-	}, [])
+	}, [table])
 	useEffect(() => {
 		let tableItem = table[0]
 		for (let key in tableItem) {

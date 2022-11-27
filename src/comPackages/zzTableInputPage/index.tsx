@@ -159,7 +159,7 @@ export default class Index extends Component<IPageOwnProps, IPageState>  {
 	handleCheCK = () => {
 		let { table, table_origin } = this.state
 		let isModify = false //是否存在修改
-		let r=[] 
+		let r:Array<any>=[] 
 		if (table.length !== table_origin.length) {
 			isModify = true
 		} else {
