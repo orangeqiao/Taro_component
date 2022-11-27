@@ -63,7 +63,7 @@ export default class Index extends Component<IPageOwnProps, IPageState>  {
 				phone: '2223',
 				desc: '靓女'
 			},],
-			maxLength:4
+			maxLength:5
 
 
 		}
